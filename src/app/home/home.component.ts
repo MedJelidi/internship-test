@@ -13,11 +13,15 @@ export class HomeComponent implements OnInit, OnDestroy {
   images: Image[];
   pos: number;
   subs: Subscription;
+  firstLoading: boolean;
+  loading: boolean;
 
   constructor(private imageService: ImageService) {
     this.images = [];
     this.pos = 0;
     this.subs = new Subscription();
+    this.firstLoading = true;
+    this.loading = true;
   }
 
   ngOnInit(): void {
@@ -36,6 +40,9 @@ export class HomeComponent implements OnInit, OnDestroy {
             this.images[this.images.length] = image;
             if (i < 11) {
               this.loadImages(i + 1);
+            } else {
+              if (this.firstLoading) { this.firstLoading = false; }
+              this.loading = false;
             }
             this.pos++;
             console.log(this.pos);

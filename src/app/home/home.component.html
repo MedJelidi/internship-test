@@ -1,5 +1,8 @@
 <div class="images-container">
-  <div *ngFor="let image of images" class="img-mr">
-    <app-image [image]="image"></app-image>
-  </div>
+  <ng-container *ngIf="!firstLoading && !loading">
+    <div *ngFor="let image of images" class="img-mr">
+      <app-image [image]="image"></app-image>
+    </div>
+  </ng-container>
+  <div *ngIf="firstLoading || loading" class="loader"></div>
 </div>
