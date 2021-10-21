@@ -12,11 +12,11 @@
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  padding: 0 50px;
+  padding: 0 20px;
 }
 
 .images-container .img-mr {
-  margin: 15px;
+  margin: 5px;
   text-align: center;
 }
 
@@ -68,8 +68,7 @@
 
 .loader {
   position: fixed;
-  top: 335px;
-  margin: 50px auto 0;
+  top: 40%;
   border: 16px solid #f3f3f3;
   border-top: 16px solid #4682b4;
   border-radius: 50%;
