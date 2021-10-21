@@ -1,0 +1,11 @@
+.images-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 0 50px;
+}
+
+.images-container .img-mr {
+  margin: 15px;
+}
