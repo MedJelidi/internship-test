@@ -1,9 +1,9 @@
 <div class="img-container">
   <h2 class="img-auth">{{image?.author}}</h2>
   <div class="img-crop">
-    <img src="{{image?.download_url}}" alt="{{image?.author}}" class="csm-img">
+    <img alt="{{image?.author}}" class="csm-img" src="{{image?.download_url}}">
   </div>
   <p class="img-txt">{{image?.text}}</p>
-  <div class="fav add-fav" *ngIf="!isFavorite" (click)="addToFavorites()">Add to favorites</div>
-  <div class="fav remove-fav" *ngIf="isFavorite" (click)="removeFromFavorites()">Remove from favorites</div>
+  <div (click)="addToFavorites()" *ngIf="!isFavorite" class="fav add-fav">Add to favorites</div>
+  <div (click)="removeFromFavorites()" *ngIf="isFavorite" class="fav remove-fav">Remove from favorites</div>
 </div>

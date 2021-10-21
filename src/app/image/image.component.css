@@ -52,14 +52,7 @@
   cursor: pointer;
 }
 
-.img-container:hover .add-fav {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: 'Roboto', sans-serif;
-}
-
-.img-container .remove-fav {
+.img-container:hover .add-fav, .img-container .remove-fav {
   display: flex;
   justify-content: center;
   align-items: center;

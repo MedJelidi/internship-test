@@ -68,8 +68,10 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
             this.nextImages.push(image);
             console.log(this.nextImages);
             if (i < 11) {
+              this.pos++;
               this.loadImages(i + 1);
             } else {
+              this.pos++;
               this.images = this.images.concat(this.nextImages);
               this.nextImages = [];
               if (this.firstLoading) {
@@ -79,10 +81,11 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
               this.scrolling = false;
               this.allImages = [...this.images];
             }
-            this.pos++;
             console.log(this.pos);
           }, err => {
             console.log(err);
+            this.pos++;
+            this.loadImages(i + 1);
             this.loading = false;
             this.scrolling = false;
           })
