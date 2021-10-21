@@ -117,7 +117,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     this.favorites = this.favorites.concat(img);
   }
 
-  removeFromFavourite(id: string): void {
+  removeFromFavorites(id: string): void {
     const currentFavorites: Image[] = JSON.parse(localStorage.getItem('favorites') ?? '[]');
     if (currentFavorites.length > 0) {
       const newFavorites = currentFavorites.filter((img) => img.id !== id);

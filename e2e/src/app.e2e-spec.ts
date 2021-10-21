@@ -1,4 +1,4 @@
-import { browser, logging } from 'protractor';
+import { browser, by, element, logging } from 'protractor';
 import { AppPage } from './app.po';
 
 describe('workspace-project App', () => {
@@ -8,9 +8,21 @@ describe('workspace-project App', () => {
     page = new AppPage();
   });
 
-  it('should display welcome message', async () => {
+  it('should display favorites link', async () => {
     await page.navigateTo();
-    expect(await page.getTitleText()).toEqual('internship-test app is running!');
+    expect(await page.getLinkText('Favorites')).toEqual('Favorites');
+  });
+
+  it('should display home link', async () => {
+    await page.navigateTo();
+    expect(await page.getLinkText('Home')).toEqual('Home');
+  });
+
+  it('should list 12 images', async () => {
+    await page.navigateTo();
+    page.getSetOfImages().then((images) => {
+      expect(images.length).toBe(12);
+    });
   });
 
   afterEach(async () => {

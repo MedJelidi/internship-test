@@ -11,7 +11,7 @@
     <ng-container *ngIf="!firstLoading">
       <div *ngFor="let image of images" class="img-mr">
         <app-image (addSubject)="addToFavorite($event)"
-                   (removeSubject)="removeFromFavourite($event)"
+                   (removeSubject)="removeFromFavorites($event)"
                    [isFavorite]="inFavorites(image.id)"
                    [image]="image"></app-image>
       </div>

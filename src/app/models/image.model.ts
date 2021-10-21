@@ -1,7 +1,7 @@
 export interface Image {
   id: string;
   author: string;
-  text: string,
+  text: string;
   width: string;
   height: string;
   url: string;
