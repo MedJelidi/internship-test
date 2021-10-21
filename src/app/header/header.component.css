@@ -1,0 +1,32 @@
+.header {
+  display: flex;
+  align-items: center;
+  height: 50px;
+  background-color: #4682b4;
+}
+
+.header span {
+  font-family: 'Roboto', sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  color: #fff;
+  margin-left: 20px;
+  margin-right: 50px;
+}
+
+.header .nav-items {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 100%;
+  width: 7%;
+}
+
+.header .nav-items a {
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+}
+
