@@ -19,6 +19,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   nextImages: Image[];
   searchText: string;
   allImages: Image[];
+  favorites: Image[];
 
   constructor(private imageService: ImageService) {
     this.images = [];
@@ -30,6 +31,8 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     this.nextImages = [];
     this.searchText = '';
     this.allImages = [];
+    const localFavorites = localStorage.getItem('favorites');
+    this.favorites = localFavorites != null ? JSON.parse(localFavorites) : [];
   }
 
   ngOnInit(): void {
@@ -107,5 +110,23 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   }
 
+  addToFavorite(img: Image): void {
+    let currentFavorites: Image[] = JSON.parse(localStorage.getItem('favorites') ?? '[]');
+    currentFavorites = currentFavorites.concat(img);
+    localStorage.setItem('favorites', JSON.stringify(currentFavorites));
+    this.favorites = this.favorites.concat(img);
+  }
 
+  removeFromFavourite(id: string): void {
+    const currentFavorites: Image[] = JSON.parse(localStorage.getItem('favorites') ?? '[]');
+    if (currentFavorites.length > 0) {
+      const newFavorites = currentFavorites.filter((img) => img.id !== id);
+      localStorage.setItem('favorites', JSON.stringify(newFavorites));
+      this.favorites = [...newFavorites];
+    }
+  }
+
+  inFavorites(id: string): boolean {
+    return this.favorites.findIndex(f => f.id === id) > -1;
+  }
 }

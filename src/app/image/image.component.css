@@ -41,18 +41,25 @@
   max-width: 435px;
 }
 
-.img-container .add-fav {
+.img-container .fav {
   display: none;
   position: absolute;
   bottom: 0;
   width: 100%;
   height: 50px;
-  color: white;
+  color: #ffffff;
   background: #4682b4;
   cursor: pointer;
 }
 
 .img-container:hover .add-fav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Roboto', sans-serif;
+}
+
+.img-container .remove-fav {
   display: flex;
   justify-content: center;
   align-items: center;

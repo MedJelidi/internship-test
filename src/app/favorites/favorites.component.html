@@ -1,0 +1,11 @@
+<div class="images-container">
+  <div *ngFor="let image of favorites" class="img-mr">
+    <app-image (removeSubject)="removeFromFavorites(image.id)"
+               [image]="image" [isFavorite]="true">
+    </app-image>
+  </div>
+  <div *ngIf="noFavorites()" class="no-favorites">
+    <div class="info">You have no favorite images...<br>Click <a routerLink="..">here</a> to add some!</div>
+  </div>
+</div>
+

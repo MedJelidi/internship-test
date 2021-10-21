@@ -1,16 +1,19 @@
 <div class="home-container">
   <div class="search-container">
-      <input type="text"
-             class="search-input"
-             placeholder="SEARCH"
-             [(ngModel)]="searchText"
-             (keyup)="onSearch()">
+    <input (keyup)="onSearch()"
+           [(ngModel)]="searchText"
+           class="search-input"
+           placeholder="SEARCH"
+           type="text">
     <span class="search-word">SEARCH</span>
   </div>
   <div class="images-container">
     <ng-container *ngIf="!firstLoading">
       <div *ngFor="let image of images" class="img-mr">
-        <app-image [image]="image"></app-image>
+        <app-image (addSubject)="addToFavorite($event)"
+                   (removeSubject)="removeFromFavourite($event)"
+                   [isFavorite]="inFavorites(image.id)"
+                   [image]="image"></app-image>
       </div>
     </ng-container>
     <div *ngIf="firstLoading || loading" class="loader"></div>

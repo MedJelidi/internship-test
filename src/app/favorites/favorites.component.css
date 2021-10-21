@@ -1,0 +1,31 @@
+.images-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 0 50px;
+}
+
+.images-container .img-mr {
+  margin: 15px;
+  text-align: center;
+}
+
+.no-favorites {
+  margin-top: 100px;
+  border: 3px #4682b4 solid;
+  padding: 50px;
+  border-radius: 25px;
+  line-height: 35px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.no-favorites .info {
+  text-align: center;
+}
+
+.no-favorites .info a {
+  text-decoration: none;
+  color: #4682b4;
+}

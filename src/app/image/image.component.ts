@@ -1,5 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, Output} from '@angular/core';
 import {Image} from '../models/image.model';
+import {ReplaySubject} from 'rxjs';
 
 @Component({
   selector: 'app-image',
@@ -9,9 +10,28 @@ import {Image} from '../models/image.model';
 export class ImageComponent implements OnInit {
 
   @Input() image: Image | undefined;
-  constructor() { }
+  favorites: Image[];
+  @Output() addSubject: ReplaySubject<Image>;
+  @Output() removeSubject: ReplaySubject<string>;
+  @Input() isFavorite: boolean | undefined;
+
+  constructor() {
+    const localFavorites = localStorage.getItem('favorites');
+    this.favorites = localFavorites != null ? JSON.parse(localFavorites) : [];
+    this.addSubject = new ReplaySubject<Image>();
+    this.removeSubject = new ReplaySubject<string>();
+  }
 
   ngOnInit(): void {
   }
 
+  addToFavorites(): void {
+    if (!this.isFavorite) {
+      this.addSubject.next(this.image);
+    }
+  }
+
+  removeFromFavorites(): void {
+    this.removeSubject.next(this.image ? this.image.id : '-1');
+  }
 }
