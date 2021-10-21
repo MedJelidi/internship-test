@@ -17,6 +17,8 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   loading: boolean;
   scrolling: boolean;
   nextImages: Image[];
+  searchText: string;
+  allImages: Image[];
 
   constructor(private imageService: ImageService) {
     this.images = [];
@@ -26,6 +28,8 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     this.loading = true;
     this.scrolling = false;
     this.nextImages = [];
+    this.searchText = '';
+    this.allImages = [];
   }
 
   ngOnInit(): void {
@@ -37,10 +41,9 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.loadImages(0);
     this.subs.add(
-      fromEvent(window, 'scroll').subscribe((e) => {
-        if (!this.scrolling) {
+      fromEvent(window, 'scroll').subscribe(() => {
+        if (!this.scrolling && this.searchText.length === 0) {
           const reachedBottom = (document.documentElement.scrollHeight
             - Math.abs(document.documentElement.scrollTop))
             <= document.documentElement.clientHeight;
@@ -66,9 +69,12 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
             } else {
               this.images = this.images.concat(this.nextImages);
               this.nextImages = [];
-              if (this.firstLoading) { this.firstLoading = false; }
+              if (this.firstLoading) {
+                this.firstLoading = false;
+              }
               this.loading = false;
               this.scrolling = false;
+              this.allImages = [...this.images];
             }
             this.pos++;
             console.log(this.pos);
@@ -79,5 +85,27 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
           })
     );
   }
+
+  contains(img: Image): boolean {
+    return img.id.toUpperCase().includes(this.searchText.toUpperCase())
+      || img.author.toUpperCase().includes(this.searchText.toUpperCase())
+      || img.text.toUpperCase().includes(this.searchText.toUpperCase());
+  }
+
+  onSearch(): void {
+    if (this.searchText.length === 0) {
+      this.images = [...this.allImages];
+    } else {
+      const searchedImages: Image[] = [];
+      this.allImages.forEach(img => {
+        if (this.contains(img)) {
+          searchedImages[searchedImages.length] = img;
+        }
+      });
+      console.log(searchedImages);
+      this.images = [...searchedImages];
+    }
+  }
+
 
 }

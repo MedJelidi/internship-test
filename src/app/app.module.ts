@@ -7,6 +7,7 @@ import { HeaderComponent } from './header/header.component';
 import {HttpClientModule} from '@angular/common/http';
 import { ImageComponent } from './image/image.component';
 import { HomeComponent } from './home/home.component';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { HomeComponent } from './home/home.component';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

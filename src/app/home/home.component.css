@@ -1,3 +1,11 @@
+.home-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 15px;
+}
+
 .images-container {
   position: relative;
   display: flex;
@@ -10,6 +18,52 @@
 .images-container .img-mr {
   margin: 15px;
   text-align: center;
+}
+
+.search-container {
+  position: relative;
+  width: 500px;
+  height: 42px;
+  margin: 20px 0 35px 0;
+  border: 3px #4682b4 solid;
+}
+
+.search-container .search-input {
+  position: absolute;
+  width: 485px;
+  height: 42px;
+  outline: none;
+  padding: 0 0 0 10px;
+  border: none;
+  font-size: 22px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.search-container .search-input::placeholder {
+  font-family: 'Roboto', sans-serif;
+  font-size: 22px;
+  font-weight: 400;
+  color: #585858;
+}
+
+.search-container .search-word {
+  position: absolute;
+  right: 9px;
+  top: 8px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 22px;
+  font-weight: 400;
+  color: #4682b4;
+}
+
+@media (max-width: 900px) {
+  .search-container {
+    width: 80%;
+  }
+
+  .search-container .search-input {
+    width: 70%;
+  }
 }
 
 .loader {
