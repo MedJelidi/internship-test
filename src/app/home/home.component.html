@@ -1,5 +1,5 @@
 <div class="images-container">
-  <ng-container *ngIf="!firstLoading && !loading">
+  <ng-container *ngIf="!firstLoading">
     <div *ngFor="let image of images" class="img-mr">
       <app-image [image]="image"></app-image>
     </div>
