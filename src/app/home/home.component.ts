@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnDestroy, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnDestroy, OnInit, TrackByFunction} from '@angular/core';
 import {ImageService} from '../services/image.service';
 import {Image} from '../models/image.model';
 import {fromEvent, Subscription} from 'rxjs';
@@ -131,5 +131,13 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
   inFavorites(id: string): boolean {
     return this.favorites.findIndex(f => f.id === id) > -1;
+  }
+
+  everyLoading(): boolean {
+    return this.firstLoading || this.loading;
+  }
+
+  trackById(index: number, image: Image): string {
+    return image.id;
   }
 }

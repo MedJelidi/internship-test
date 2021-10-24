@@ -1,5 +1,5 @@
 <div class="images-container">
-  <div *ngFor="let image of favorites" class="img-mr">
+  <div *ngFor="let image of favorites; trackBy: trackById" class="img-mr">
     <app-image (removeSubject)="removeFromFavorites(image.id)"
                [image]="image" [isFavorite]="true">
     </app-image>

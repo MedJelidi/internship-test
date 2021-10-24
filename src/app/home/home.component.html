@@ -9,14 +9,14 @@
   </div>
   <div class="images-container">
     <ng-container *ngIf="!firstLoading">
-      <div *ngFor="let image of images" class="img-mr">
+      <div *ngFor="let image of images; trackBy: trackById" class="img-mr">
         <app-image (addSubject)="addToFavorite($event)"
                    (removeSubject)="removeFromFavorites($event)"
                    [image]="image"
                    [isFavorite]="inFavorites(image.id)"></app-image>
       </div>
     </ng-container>
-    <div *ngIf="firstLoading || loading" class="loader"></div>
+    <div *ngIf="everyLoading()" class="loader"></div>
   </div>
 </div>
 
