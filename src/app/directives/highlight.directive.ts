@@ -1,15 +1,17 @@
-import {Directive, ElementRef, Input, OnInit} from '@angular/core';
-import {BehaviorSubject} from 'rxjs';
+import {Directive, ElementRef, Input, OnDestroy, OnInit} from '@angular/core';
+import {BehaviorSubject, Subscription} from 'rxjs';
 
 @Directive({
   selector: '[appHighlight]'
 })
-export class HighlightDirective implements OnInit {
+export class HighlightDirective implements OnInit, OnDestroy {
 
   @Input() searchStringSubject: BehaviorSubject<string> | undefined;
   @Input() text: string | undefined;
+  subs: Subscription;
 
   constructor(private el: ElementRef) {
+    this.subs = new Subscription();
   }
 
   ngOnInit(): void {
@@ -27,6 +29,10 @@ export class HighlightDirective implements OnInit {
         }
       });
     }
+  }
+
+  ngOnDestroy(): void {
+    this.subs.unsubscribe();
   }
 
 }

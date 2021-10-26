@@ -36,7 +36,4 @@ export class ImageComponent implements OnInit {
     this.removeSubject.next(this.image ? this.image.id : '-1');
   }
 
-  onHover($event: MouseEvent): void {
-    console.log($event);
-  }
 }
