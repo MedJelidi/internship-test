@@ -10,6 +10,23 @@
   min-width: 435px;
 }
 
+.layer {
+  background-color: rgba(70, 130, 180, .1);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.2s linear;
+}
+
+.img-container:hover > .layer {
+  visibility: visible;
+  opacity: 1;
+}
+
 .img-container .img-auth {
   font-family: 'Roboto', sans-serif;
   font-size: 24px;
@@ -38,11 +55,10 @@
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
   text-align: center;
-  max-width: 435px;
+  max-width: 400px;
 }
 
 .img-container .fav {
-  display: none;
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -50,11 +66,19 @@
   color: #ffffff;
   background: #4682b4;
   cursor: pointer;
-}
-
-.img-container:hover .add-fav, .img-container .remove-fav {
   display: flex;
   justify-content: center;
   align-items: center;
   font-family: 'Roboto', sans-serif;
+}
+
+.img-container .add-fav {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.2s ease-in-out;
+}
+
+.img-container:hover > .add-fav {
+  visibility: visible;
+  opacity: 1;
 }

@@ -1,7 +1,7 @@
-import {AfterViewInit, Component, OnDestroy, OnInit, TrackByFunction} from '@angular/core';
+import {AfterViewInit, Component, OnDestroy, OnInit} from '@angular/core';
 import {ImageService} from '../services/image.service';
 import {Image} from '../models/image.model';
-import {fromEvent, Subscription} from 'rxjs';
+import {BehaviorSubject, fromEvent, Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -20,6 +20,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   searchText: string;
   allImages: Image[];
   favorites: Image[];
+  searchTextSubject: BehaviorSubject<string>;
 
   constructor(private imageService: ImageService) {
     this.images = [];
@@ -33,6 +34,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     this.allImages = [];
     const localFavorites = localStorage.getItem('favorites');
     this.favorites = localFavorites != null ? JSON.parse(localFavorites) : [];
+    this.searchTextSubject = new BehaviorSubject<string>('');
   }
 
   ngOnInit(): void {
@@ -108,9 +110,9 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
           searchedImages[searchedImages.length] = img;
         }
       });
-      console.log(searchedImages);
       this.images = [...searchedImages];
     }
+    this.searchTextSubject.next(this.searchText);
   }
 
   addToFavorite(img: Image): void {

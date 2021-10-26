@@ -1,9 +1,11 @@
 <div class="img-container">
-  <h2 class="img-auth">{{image?.author}}</h2>
+  <div class="layer"></div>
+  <h2 [searchStringSubject]="searchStringSubject" [text]="image?.author" appHighlight
+      class="img-auth">{{image?.author}}</h2>
   <div class="img-crop">
     <img alt="{{image?.author}}" class="csm-img" src="{{image?.download_url}}">
   </div>
-  <p class="img-txt">{{image?.text}}</p>
+  <p [searchStringSubject]="searchStringSubject" [text]="image?.text" appHighlight class="img-txt">{{image?.text}}</p>
   <div (click)="addToFavorites()" *ngIf="!isFavorite" class="fav add-fav">Add to favorites</div>
   <div (click)="removeFromFavorites()" *ngIf="isFavorite" class="fav remove-fav">Remove from favorites</div>
 </div>

@@ -1,4 +1,4 @@
-import {Component, OnInit, TrackByFunction} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Image} from '../models/image.model';
 
 @Component({

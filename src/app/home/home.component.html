@@ -1,7 +1,8 @@
 <div class="home-container">
   <div class="search-container">
     <input (keyup)="onSearch()"
-           [(ngModel)]="searchText"
+           (ngModelChange)="searchText=$event"
+           [ngModel]="searchText | uppercase"
            class="search-input"
            placeholder="SEARCH"
            type="text">
@@ -13,7 +14,8 @@
         <app-image (addSubject)="addToFavorite($event)"
                    (removeSubject)="removeFromFavorites($event)"
                    [image]="image"
-                   [isFavorite]="inFavorites(image.id)"></app-image>
+                   [isFavorite]="inFavorites(image.id)"
+                   [searchStringSubject]="searchTextSubject"></app-image>
       </div>
     </ng-container>
     <div *ngIf="everyLoading()" class="loader"></div>
