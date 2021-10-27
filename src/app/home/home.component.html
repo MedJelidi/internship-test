@@ -1,8 +1,7 @@
 <div class="home-container">
   <div class="search-container">
     <input (keyup)="onSearch()"
-           (ngModelChange)="searchText=$event"
-           [ngModel]="searchText | uppercase"
+           [(ngModel)]="searchText"
            class="search-input"
            placeholder="SEARCH"
            type="text">

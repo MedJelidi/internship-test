@@ -15,20 +15,31 @@ export class HighlightDirective implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    if (this.text) {
-      this.searchStringSubject?.subscribe(t => {
+    this.searchStringSubject?.subscribe(t => {
+      if (this.text) {
         const index = this.text?.toUpperCase().indexOf(t.toUpperCase()) ?? -1;
         if (t.length > 0 && index > -1) {
           if (index !== -1) {
-            this.el.nativeElement.innerHTML = this.text?.substring(0, index)
-              + '<span class="highlight">' + this.text?.substr(index, t.length) + '</span>'
-              + this.text?.substring(index + t.length);
+            const regExp = new RegExp(t, 'gi');
+            const word = this.text.match(regExp);
+            console.log(word);
+            const arr = this.text.split(regExp);
+            let r = '';
+            if (word) {
+              for (let i = 0; i < arr.length; i++) {
+                r += arr[i];
+                if (i < arr.length - 1) {
+                  r += '<span class="highlight">' + word[i] + '</span>';
+                }
+              }
+              this.el.nativeElement.innerHTML = r;
+            }
           }
         } else {
           this.el.nativeElement.innerHTML = this.text;
         }
-      });
-    }
+      }
+    });
   }
 
   ngOnDestroy(): void {
